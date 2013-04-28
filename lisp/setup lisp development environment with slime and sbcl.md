@@ -22,7 +22,7 @@ Installation
 
 Follow the instructions in the manual.
 
-`Ctrl-x Ctrl-f ~/.emacs` to open emacs configuration file, the installation codes for SLIME may looks like this
+`Ctrl-x Ctrl-f ~/.emacs` to open emacs configuration file, the installation codes for SLIME may look like this:
 
 	(setq inferior-lisp-program "d:/lisp/sbcl/sbcl.exe") ; Lisp system
 	(add-to-list 'load-path "d:/lisp/slime/")  ; SLIME directory
@@ -38,8 +38,30 @@ Installation of SBCL under Windows is quite easy and just follow the instruction
 Usage Examples
 -----------------------
 
-*[Create a new lisp file]
+### 1. Slime mode
+
+`M-x slime` to enable the slime mode. Startup information will be shown up in a new buffer named *inferior-lisp*. When the command prompt appears, you can input lisp command.
+
+	* (+ 3 5)
+
+	8
+
+### 2. Create a new lisp file
 
 Use `Ctrl-x Ctrl-f` to create a new lisp file. For example:
 
-`(defun )` 
+	(defun hello-world ()
+  		(format t "Hello, World!")
+	)
+
+`Ctrl-x Ctrl-s` to save the file. `Ctrl-c Ctrl-c` command will compile the lisp file. When successfully compiled, following message may appears in the *inferior-lisp* buffer.
+
+	; compiling (DEFUN HELLO-WORLD ...)
+
+Then you can execute the following command:
+	
+	(hello-world)
+	Hello, World!
+	NIL
+
+Now we have successfully compiled and executed a lisp file. For more information about using SLIME, please refer to the SLIME manual.
