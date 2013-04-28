@@ -18,9 +18,11 @@ Download the corresponding codes and install them following the corresponding ma
 Installation
 -----------------------
 
-* SLIME: Follow the instructions in the manual.
+### SLIME: 
 
-`Ctrl-x Ctrl-f ~/.emacs` to open emacs configuration file, the installation codes for SLIME may looks like this:
+Follow the instructions in the manual.
+
+`Ctrl-x Ctrl-f ~/.emacs` to open emacs configuration file, the installation codes for SLIME may looks like this
 
 	(setq inferior-lisp-program "d:/lisp/sbcl/sbcl.exe") ; Lisp system
 	(add-to-list 'load-path "d:/lisp/slime/")  ; SLIME directory
@@ -29,7 +31,9 @@ Installation
 
 Please make sure that the directory are set correctly.
 
-* SBCL: Installation of SBCL under Windows is quite easy and just follow the instructions of the installation wizard.
+### SBCL: 
+
+Installation of SBCL under Windows is quite easy and just follow the instructions of the installation wizard.
 
 Usage Examples
 -----------------------
