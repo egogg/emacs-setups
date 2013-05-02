@@ -1,0 +1,16 @@
+# name: switch(){case ...}
+# key: switch
+# --
+switch(${1:i})
+{
+	case ${2:1} :
+	{
+		$0
+		
+		break;
+	}
+	default :
+	{
+		break;
+	}
+}

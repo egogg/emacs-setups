@@ -4,6 +4,14 @@
 #ifndef ${1:_`(upcase (file-name-nondirectory (file-name-sans-extension (buffer-file-name))))`_H_}
 #define $1
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 $0
 
-#endif /* $1 */
+#ifdef __cplusplus
+}
+#endif
+
+#endif
