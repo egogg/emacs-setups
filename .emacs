@@ -21,7 +21,7 @@
 
 ;; [*] Window size
 
-(add-to-list 'default-frame-alist '(height . 41))
+(add-to-list 'default-frame-alist '(height . 38))
 (add-to-list 'default-frame-alist '(width . 90))
 
 ;; [*] Line numbers
