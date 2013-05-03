@@ -47,12 +47,15 @@ Full documentation of [CCMode](http://www.gnu.org/software/emacs/manual/html_nod
 The design philosophy of the following C-Style is: Always put block of statements between curly parentheses.
 
 	(defconst custom-c-style
-	  '((c-offsets-alist . ((inextern-lang . 0)
-				(substatement . 0)
-				(statement-case-intro . 0)
-				(substatement-open . 0)
-				(case-label . +)
-				(block-open . 0))))
+	  '((c-backslash-column . 80) 
+	    (c-backslash-max-column . 80)
+	    (c-offsets-alist .
+			     ((inextern-lang . 0)
+			      (substatement . 0)
+			      (statement-case-intro . 0)
+			      (substatement-open . 0)
+			      (case-label . +)
+			      (block-open . 0))))
 	  "Custom C programming style"
 	  )
 	(c-add-style "Custom" custom-c-style)
@@ -136,7 +139,8 @@ Follow the installation instruction from the manual to install Yasnippet. To ins
 
 	(add-to-list 'load-path "~/.emacs.d/yasnippet")
 	(require 'yasnippet)
-	(yas-global-mode 1)
+	(setq yas-snippet-dirs '("~/.emacs.d/yasnippet/snippets"))
+	(yas-global-mode 1
 
 Here are some tips about changing Yasnippet expansion key (which is TAB in default):
 

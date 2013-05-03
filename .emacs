@@ -1,8 +1,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Basic Settings ;;
-;; ;;
-;; [*] Theme ;;
-;; [*] Backup files ;;
+;; Basic Settings                                                  ;;
+;;                                                                 ;;
+;; [*] Theme                                                       ;;
+;; [*] Backup files                                                ;;
+;; [*] Start-up screen & toolbar                                   ;;
+;; [*] Speedbar                                                    ;;
+;; [*] Window size & position                                      ;;
+;; [*] Line numbers                                                ;;
+;; [*] Auto pair                                                   ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; [*] Theme
@@ -18,16 +23,34 @@
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message nil)
 (tool-bar-mode -1)
+(toggle-scroll-bar -1)
 
-;; [*] Window size
+;; [*] Speedbar
 
-(add-to-list 'default-frame-alist '(height . 38))
-(add-to-list 'default-frame-alist '(width . 90))
+(setq speedbar-use-images nil)
+
+(add-to-list 'load-path "~/.emacs.d/sr-speedbar")
+(require 'sr-speedbar)
+(setq sr-speedbar-skip-other-window-p t)
+(setq sr-speedbar-right-side nil)
+(global-set-key (kbd "<f12>") 'sr-speedbar-toggle)
+(add-hook 'speedbar-mode-hook '(lambda () (linum-mode -1)))
+
+;; [*] Window size & position
+
+(add-to-list 'default-frame-alist '(height . 42))
+(add-to-list 'default-frame-alist '(width . 111))
+(add-to-list 'default-frame-alist
+	     (cons 'top (/ (- (x-display-pixel-height)
+			      (* 42 (frame-char-height)) 60) 2)))
+(add-to-list 'default-frame-alist
+	     (cons 'left (/ (- (x-display-pixel-width)
+			       (* 111 (frame-char-width))) 2)))
 
 ;; [*] Line numbers
 
 (global-linum-mode t)
-(setq linum-format "%4d \u2502")
+(setq linum-format " %4d\u2502")
 (setq line-number-mode t)
 (setq column-number-mode t)
 
@@ -36,7 +59,7 @@
 (electric-pair-mode 1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Lisp development environment SLIME & SBCL ;;
+;; Lisp development environment SLIME & SBCL                       ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq inferior-lisp-program "d:/lisp/sbcl/sbcl.exe") ; Lisp system
@@ -45,12 +68,12 @@
 (slime-setup)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; C/C++ development environment ;;
-;; ;;
-;; [*] Auto-pair ;;
-;; [*] Auto-complete ;;
-;; [*] Clang ;;
-;; [*] Yasnippet ;;
+;; C/C++ development environment                                   ;;
+;;                                                                 ;;
+;; [*] Auto-pair                                                   ;;
+;; [*] Auto-complete                                               ;;
+;; [*] Clang                                                       ;;
+;; [*] Yasnippet                                                   ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; [*] Auto pair
@@ -66,12 +89,15 @@
 ; C-Style
 
 (defconst custom-c-style
-  '((c-offsets-alist . ((inextern-lang . 0)
-      (substatement . 0)
-      (statement-case-intro . 0)
-      (substatement-open . 0)
-      (case-label . +)
-      (block-open . 0))))
+  '((c-backslash-column . 80) 
+    (c-backslash-max-column . 80)
+    (c-offsets-alist .
+		     ((inextern-lang . 0)
+		      (substatement . 0)
+		      (statement-case-intro . 0)
+		      (substatement-open . 0)
+		      (case-label . +)
+		      (block-open . 0))))
   "Custom C programming style"
   )
 (c-add-style "Custom" custom-c-style)
@@ -88,7 +114,7 @@
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories
-"~/.emacs.d/auto-complete/ac-dict")
+	     "~/.emacs.d/auto-complete/ac-dict")
 (ac-config-default)
 
 ; Trigger auto-complete with TAB Key
@@ -117,4 +143,5 @@
 
 (add-to-list 'load-path "~/.emacs.d/yasnippet")
 (require 'yasnippet)
+(setq yas-snippet-dirs '("~/.emacs.d/yasnippet/snippets"))
 (yas-global-mode 1)
