@@ -42,7 +42,6 @@ We use sr-speedbar (http://www.emacswiki.org/SrSpeedbar) to browse files and fol
 	(setq speedbar-use-images nil)
 	(add-to-list 'load-path "~/.emacs.d/sr-speedbar")
 	(require 'sr-speedbar)
-	(setq sr-speedbar-skip-other-window-p t)
 	(setq sr-speedbar-right-side nil)
 	(global-set-key (kbd "<f12>") 'sr-speedbar-toggle)
 	(add-hook 'speedbar-mode-hook '(lambda () (linum-mode -1)))
