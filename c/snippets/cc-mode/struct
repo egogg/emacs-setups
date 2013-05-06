@@ -1,7 +1,7 @@
 # name: struct ... { ... }
 # key: struct
 # --
-struct ${1:name}
+typedef struct _${1:TAG}
 {
     $0
-};
+} $1, *P$1;
