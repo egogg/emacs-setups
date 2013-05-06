@@ -93,6 +93,7 @@
     (c-offsets-alist .
 		     ((inextern-lang . 0)
 		      (substatement . 0)
+		      (func-decl-cont . 0)
 		      (statement-case-intro . 0)
 		      (substatement-open . 0)
 		      (case-label . +)
