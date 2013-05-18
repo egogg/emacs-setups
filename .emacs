@@ -33,7 +33,7 @@
 (require 'sr-speedbar)
 (setq sr-speedbar-right-side nil)
 (global-set-key (kbd "<f12>") 'sr-speedbar-toggle)
-(add-hook 'speedbar-mode-hook '(lambda () (linum-mode -1)))
+(add-hook 'speedbar-mode-hook #'(lambda () (linum-mode -1)))
 
 ;; [*] Window size & position
 
@@ -55,16 +55,20 @@
 
 ;; [*] Auto pair
 
-(electric-pair-mode 1)
+(add-to-list 'load-path "~/.emacs.d/auto-pair")
+(require 'autopair)
+(autopair-global-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Lisp development environment SLIME & SBCL                       ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(add-hook 'lisp-mode-hook #'(lambda () (show-paren-mode 1)))
+
 (setq inferior-lisp-program "d:/lisp/sbcl/sbcl.exe") ; Lisp system
 (add-to-list 'load-path "d:/lisp/slime/") ; SLIME directory
 (require 'slime)
-(slime-setup)
+(slime-setup '(slime-fancy))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C/C++ development environment                                   ;;
@@ -78,6 +82,8 @@
 ;; [*] Auto pair
 
 (defun custom-c-mode-auto-pair ()
+  (push ?{
+	(getf autopair-dont-pair :everywhere))
   (interactive)
   (make-local-variable 'skeleton-pair-alist)
   (setq skeleton-pair-alist '((?{ \n > _ \n ?} >)))

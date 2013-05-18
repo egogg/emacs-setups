@@ -27,9 +27,9 @@ Follow the instructions in the manual.
 	(setq inferior-lisp-program "d:/lisp/sbcl/sbcl.exe") ; Lisp system
 	(add-to-list 'load-path "d:/lisp/slime/")  ; SLIME directory
 	(require 'slime)
-	(slime-setup)
+	(slime-setup '(slime-fancy))
 
-Please make sure that the directory are set correctly.
+Please make sure that the directory are set correctly. Note that we use `(slime-setup '(slime-fancy))` command to load REPL and all other contribs.
 
 ### SBCL: 
 
