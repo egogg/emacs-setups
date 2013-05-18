@@ -75,8 +75,12 @@ Show line numbers at the left side:
 Auto pair
 --------------------------------------
 
-The build in electric pair mode is used:
+We use autopair.el to full fill this function. Useful links include: EmacsWiki(http://www.emacswiki.org/emacs/AutoPairs), Github(https://github.com/capitaomorte/autopair). Please download the latest version of autopair.el and follow the install instructions in the manual. Basic setting may looks like:
 
-	(electric-pair-mode 1)
+	(add-to-list 'load-path "~/.emacs.d/auto-pair")
+	(require 'autopair)
+	(autopair-global-mode)
+
+Here autopair.el is placed in the `~/.emacs.d/auto-pair` folder.
 
 
