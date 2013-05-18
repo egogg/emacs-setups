@@ -31,9 +31,11 @@ Relative commands about locating and counting lines including:
 
 There are several auto-pair choices. You can find the full list in EmacsWiki [Auto Pairs](http://www.emacswiki.org/emacs/AutoPairs). The most convenience one is electric-pair-mode which is the build-in function of Emacs (`(electric-pair-mode 1)`).
 
-However for C and C++ coding we need some hooks. When we edit `{` and `}` pairs, we usually need a new line and indent between them, which usually cost two more steps with the common auto-pair modes: `{|}` + `C-b` + `C-j`. The hooks will insert the newline and indent automatically. 
+However for C and C++ coding we need some hooks. When we edit `{` and `}` pairs, we usually need a new line and indent between them, which usually cost two more steps with the common auto-pair modes: `{|}` + `C-b` + `C-j`. The hooks will insert the newline and indent automatically.  (Here we disable the auto pair function from `autopair.el` and use a custom auto pair function for `{}` pairs)
 
 	(defun custom-c-mode-auto-pair ()
+	(push ?{
+		  (getf autopair-dont-pair :everywhere))
   	(interactive)
   	(make-local-variable 'skeleton-pair-alist)
   	(setq skeleton-pair-alist  '((?{ \n > _ \n ?} >)))
